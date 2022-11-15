@@ -50,7 +50,9 @@ https://baobab.blog 에 접속하시면 바로 사용해 보실 수 있습니다
 해당 섹션은 서비스의 전체적인 흐름 정도만 설명합니다.  
 <!-- TODO : 발표 도록 내용 추가 -->
 <br/>
-![image](https://user-images.githubusercontent.com/79235021/201963351-78b7270a-ae4c-42e5-b104-277744df5d27.png)
+<td>
+  <img src="https://user-images.githubusercontent.com/79235021/201963351-78b7270a-ae4c-42e5-b104-277744df5d27.png" alt="screenshot" />
+</td>
 <br/>
 <br/>
 
