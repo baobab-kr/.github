@@ -46,7 +46,6 @@
 - Kubernetes와 Azure Cloud Resource를 활용한 배포 테스트 환경 및 배포 환경 구성
 - 배포 레벨(Dev, QA, Prod)에 구분을 통해 로컬 테스트 환경, 배포 테스트 환경, 실사용 환경 분리
 <br/>
-<br/>
 
 ## 해당 서비스는 어떻게 사용하나요?
 https://baobab.blog 에 접속하시면 바로 사용해 보실 수 있습니다.  
