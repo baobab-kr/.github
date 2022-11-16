@@ -34,9 +34,17 @@
     </tr>
   </tbody>
 </table>
+<br/>
 
 ## 해당 서비스의 개발 동기는?
-<!-- TODO : 발표 도록 내용 추가 -->
+- 개발자들에게 필수가 되어버린 블로그 서비스, 이를 위한 개발자 전용 블로그 서비스
+- 이직이 잦은 개발자의 특성들을 고려하여 블로그-채용 연계 플랫폼 서비스 구현
+- 블로그 서비스의 기본적인 기능을 유지하고 추가적인 채용 서비스 기능을 개발
+- 서비스 별로 각기 다른 기술 환경을 사용할 수 있도록 MSA(Micro Service Architecture) 사용
+- 애자일 개발 방법론을 착안하여 점진적인 개발 문화를 통해 고품질 소프트웨어 생산 기반 마련
+- 소프트웨어 제품에 대한 형상 관리 기술을 사용하여 효율적인 유지보수 및 개발 환경 구성
+- Kubernetes와 Azure Cloud Resource를 활용한 배포 테스트 환경 및 배포 환경 구성
+- 배포 레벨(Dev, QA, Prod)에 구분을 통해 로컬 테스트 환경, 배포 테스트 환경, 실사용 환경 분리
 <br/>
 <br/>
 
@@ -48,7 +56,21 @@ https://baobab.blog 에 접속하시면 바로 사용해 보실 수 있습니다
 
 ## 어떻게 서비스가 구성되어 있나요? 
 해당 섹션은 서비스의 전체적인 흐름 정도만 설명합니다.  
-<!-- TODO : 발표 도록 내용 추가 -->
+- Baobab 플랫폼은 다양한 서비스들이 각각의 마이크로서비스로 구분돼 API 게이트웨이를 통해 상호작용함.
+- 분리된 마이크로서비스는 각 서비스에 적합한 프레임워크, 언어 등을 선택해 개발할 수 있어 생산성이 향상됨. 
+- 마이크로서비스는 Azure Kubernetes Service의 Kubernetes Cluster를 통해 제공.
+- 데이터베이스는 Master-Slave 디자인 패턴 형식으로 구성되어 이중화됨.
+- Gabia DNS Service와 Azure DNS Service 간의 DNS 위임 설정을 통해 Azure 내부 서비스의 DNS를 제공하고, 실제 사용자(외부 접근)들이 baobab.blog 도메인을 통해 접속할 수 있도록 구성함.
+- 회원가입 인증 메일 등 메일 서비스를 위해 SaaS 형태의 클라우드 서비스인 Exchange Online 연동.
+- HTTPS 트래픽을 통해 사용자가 안전하게 서비스를 사용할 수 있도록 Let’s Encrypt 인증서 생성 및 Nginx Reverse Proxy 구성.
+- 사용자는 일반 HTTP 헤더를 통해 서비스를 사용하는 것이 아니라 TLS를 적용한 보안 헤더를 씌운 채로 서비스를 사용함.
+- 한국어 욕설 데이터 수집 후, 머신 러닝을 통해 AI 모델을 생성 및 추출하였고 이를 통해 댓글 비속어 필터링 API 구현
+- 리소스 부하량에 따라 Azure Node Pool를 자동으로 확장(축소)함.
+- Azure Blob Storage를 통해 업로드된 이미지들을 별도로 관리함.
+- Azure Storage 를 통해 Database에 저장된 DB 데이터 파일을 관리함.
+- Nginx Load Balancer 를 통해 Resource Request를 각 노드에 분산하여 전달함.
+- Cert Manager (인증서) 는 Private Container Image Registry (Azure Container Instance)를 통해서 Container Image를 제공 받음.
+- 일반적인 서비스들은 Public Container Image Registry (Github Container Registry)를 통해서 Container Image를 제공 받음.
 <br/>
 <td>
   <img src="https://user-images.githubusercontent.com/79235021/201963351-78b7270a-ae4c-42e5-b104-277744df5d27.png" alt="screenshot" />
